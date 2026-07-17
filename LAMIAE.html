@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeux Anniversaire Lamiae ! ✨</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(135deg, #0f0c20, #15102a, #060214);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Étoiles en arrière-plan */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+            background-size: 550px 550px, 350px 350px;
+            background-position: 0 0, 40px 60px;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        /* Conteneur Principal */
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ff758c;
+            text-shadow: 0 0 10px rgba(255, 117, 140, 0.5);
+        }
+
+        .intro-text {
+            font-size: 0.95rem;
+            color: #ddd;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        /* Compte à rebours */
+        .countdown {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+        .countdown-item {
+            background: rgba(255, 117, 140, 0.15);
+            border: 1px solid rgba(255, 117, 140, 0.3);
+            border-radius: 12px;
+            padding: 10px;
+            width: 75px;
+        }
+        .countdown-time {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #ff758c;
+            display: block;
+        }
+        .countdown-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #bbb;
+            letter-spacing: 1px;
+        }
+
+        /* Section Surprise cachée au début */
+        .surprise-section {
+            display: none;
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+        /* L'enveloppe et la lettre */
+        .envelope-wrapper {
+            margin: 20px auto;
+            cursor: pointer;
+            perspective: 1000px;
+            width: 200px;
+            height: 150px;
+        }
+        .envelope {
+            width: 100%;
+            height: 100%;
+            background: #ff758c;
+            position: relative;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-top: 80px solid #ff5e7e;
+            transform-origin: top;
+            transition: transform 0.4s 0.2s;
+            z-index: 3;
+        }
+        .envelope.open::before {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+        .letter {
+            position: absolute;
+            bottom: 5px;
+            width: 90%;
+            height: 85%;
+            background: white;
+            color: #333;
+            border-radius: 6px;
+            padding: 15px 10px;
+            transition: transform 0.5s 0.4s, opacity 0.5s;
+            z-index: 2;
+            font-size: 0.85rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transform: translateY(0);
+        }
+        .envelope.open .letter {
+            transform: translateY(-80px) scale(1.1);
+            z-index: 5;
+            height: auto;
+            min-height: 180px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .letter-click-tip {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        /* Éléments flottants (Cœurs / Ballons) */
+        .floating-element {
+            position: absolute;
+            bottom: -50px;
+            font-size: 24px;
+            pointer-events: none;
+            animation: floatUp 6s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-105vh) translateX(50px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Style du message d'anniversaire */
+        .hbd-title {
+            font-size: 2.2rem;
+            color: #fff;
+            text-shadow: 0 0 15px #ff758c, 0 0 30px #ff758c;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+
+    <div class="container">
+        <!-- Avant minuit : Compte à rebours -->
+        <div id="countdown-container">
+            <h1>Pour Lamiae ✨</h1>
+            <p class="intro-text">Chaque étoile brille, mais l'une d'elles s'apprête à briller encore plus fort... Presque un an de plus à tes côtés.</p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-time" id="days">00</span>
+                    <span class="countdown-label">Jours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-time" id="hours">00</span>
+                    <span class="countdown-label">Heures</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-time" id="minutes">00</span>
+                    <span class="countdown-label">Min</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-time" id="seconds">00</span>
+                    <span class="countdown-label">Sec</span>
+                </div>
+            </div>
+            <p style="font-size: 0.85rem; color: #888;">Patiente encore un tout petit peu... ❤️</p>
+        </div>
+
+        <!-- Après minuit ou fin du décompte : La Surprise -->
+        <div id="surprise-container" class="surprise-section">
+            <h2 class="hbd-title">LAMIAE 💖</h2>
+            <p style="color: #ffb3c1; margin-bottom: 20px; font-weight: bold; font-size: 1.1rem;">✨ Joyeux Anniversaire ! ✨</p>
+            
+            <p style="font-size: 0.9rem; margin-bottom: 15px;">Une petite surprise t'attend juste ici...</p>
+            
+            <div class="envelope-wrapper" onclick="openEnvelope()">
+                <div class="envelope" id="envelope">
+                    <span style="font-size: 2rem; z-index: 4;">💌</span>
+                    <div class="letter">
+                        <p style="font-weight: bold; margin-bottom: 8px; color: #ff5e7e;">Ma chère Lamiae, ❤️</p>
+                        <p style="line-height: 1.4; font-size: 0.85rem;">[Écris ton joli message personnalisé ici ! Tu peux modifier cette phrase directement dans le fichier pour lui dire tout ce que tu as sur le cœur.]</p>
+                        <p style="margin-top: 10px; font-size: 0.8rem; text-align: right; font-style: italic;">Avec tout mon amour...</p>
+                    </div>
+                </div>
+            </div>
+            <p class="letter-click-tip" id="envelope-tip">Clique sur l'enveloppe pour l'ouvrir</p>
+        </div>
+    </div>
+
+    <script>
+        // Cible : 21 Juillet 2026 à minuit (00:00:00)
+        const targetDate = new Date("July 21, 2026 00:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Calculs de temps
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Affichage des résultats
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // Si le compte à rebours est fini
+            if (distance < 0) {
+                clearInterval(timer);
+                showSurprise();
+            }
+        }, 1000);
+
+        function showSurprise() {
+            document.getElementById("countdown-container").style.display = "none";
+            document.getElementById("surprise-container").style.display = "block";
+            // Lancer la pluie de cœurs et ballons automatiquement
+            setInterval(createFloatingElement, 400);
+        }
+
+        function openEnvelope() {
+            const env = document.getElementById("envelope");
+            env.classList.toggle("open");
+            
+            const tip = document.getElementById("envelope-tip");
+            if(env.classList.contains("open")) {
+                tip.innerText = "Clique à nouveau pour la refermer";
+            } else {
+                tip.innerText = "Clique sur l'enveloppe pour l'ouvrir";
+            }
+        }
+
+        function createFloatingElement() {
+            const elements = ['🎈', '❤️', '✨', '🌹'];
+            const randomIcon = elements[Math.floor(Math.random() * elements.length)];
+            
+            const item = document.createElement('div');
+            item.classList.add('floating-element');
+            item.innerText = randomIcon;
+            
+            item.style.left = Math.random() * 100 + 'vw';
+            // Vitesse un peu aléatoire
+            item.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
+            
+            document.body.appendChild(item);
+            
+            // Supprime l'élément après l'animation pour ne pas surcharger le téléphone
+            setTimeout(() => {
+                item.remove();
+            }, 7000);
+        }
+
+        // --- LIGNE DE TEST À SUPPRIMER OU PASSER EN COMMENTAIRE POUR LA PRODUCTION ---
+        // Décommente la ligne ci-dessous si tu veux tester tout de suite le rendu de la surprise sans attendre le 21 juillet !
+        // showSurprise();
+    </script>
+</body>
+</html>
