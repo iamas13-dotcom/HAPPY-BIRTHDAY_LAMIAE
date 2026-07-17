@@ -162,7 +162,7 @@
             transform: translateY(-110px) scale(1.15);
             z-index: 5;
             height: auto;
-            min-height: 240px;
+            min-height: 200px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
@@ -212,16 +212,17 @@
 
     <div class="stars"></div>
 
-    <!-- Lecteur audio masqué -->
+    <!-- Nouvelle musique : Douce mélodie de piano calme -->
     <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <source src="https://assets.mixkit.co/active_storage/sfx/123/123-200.wav" type="audio/wav">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
         <!-- Avant minuit : Compte à rebours -->
         <div id="countdown-container">
             <h1>Pour Lamiae ✨</h1>
-            <p class="intro-text">Chaque étoile brille, mais l'une d'elles s'apprête à briller encore plus fort... Presque un an de plus à tes côtés.</p>
+            <p class="intro-text">Chaque étoile brille, mais l'une d'elles s'apprête à briller encore plus fort...</p>
             
             <div class="countdown">
                 <div class="countdown-item">
@@ -255,11 +256,10 @@
                 <div class="envelope" id="envelope">
                     <span style="font-size: 2rem; z-index: 4;">💌</span>
                     <div class="letter">
-                        <p style="font-weight: bold; margin-bottom: 8px; color: #ff5e7e;">Ma chère Lamiae, ❤️</p>
-                        <p style="line-height: 1.4; font-size: 0.78rem; color: #444; margin-bottom: 8px;">En ce jour si spécial, je voulais prendre un moment pour te dire à quel point tu comptes pour moi. Le temps passe, mais chaque instant partagé à tes côtés ne fait que rendre les jours plus beaux.</p>
-                        <p style="line-height: 1.4; font-size: 0.78rem; color: #444; margin-bottom: 8px;">Tu es cette étoile qui brille un peu plus fort que toutes les autres dans mon ciel, celle qui apporte de la lumière, de la joie et de la douceur dans ma vie.</p>
-                        <p style="line-height: 1.4; font-size: 0.78rem; color: #444;">Je te souhaite le plus merveilleux des anniversaires. Que cette nouvelle année t'apporte autant de bonheur, de rires et de réussite que tu en mérites — c'est-à-dire énormément. Merci d'être la personne extraordinaire que tu es.</p>
-                        <p style="margin-top: 10px; font-size: 0.75rem; text-align: right; font-style: italic; color: #ff5e7e; font-weight: bold;">À tes côtés, toujours. ✨</p>
+                        <p style="font-weight: bold; margin-bottom: 10px; color: #ff5e7e; font-size: 0.9rem;">Ma chère Lamiae, ❤️</p>
+                        <p style="line-height: 1.5; font-size: 0.82rem; color: #333; margin-bottom: 10px;">En ce jour si spécial, je voulais simplement te dire à quel point tu comptes pour moi. Chaque instant à tes côtés rend la vie plus belle.</p>
+                        <p style="line-height: 1.5; font-size: 0.82rem; color: #333;">Tu es mon étoile, celle qui apporte de la joie et de la douceur dans mon quotidien. Je te souhaite le plus merveilleux des anniversaires. ✨</p>
+                        <p style="margin-top: 15px; font-size: 0.8rem; text-align: right; font-style: italic; color: #ff5e7e; font-weight: bold;">Avec tout mon amour...</p>
                     </div>
                 </div>
             </div>
@@ -297,7 +297,6 @@
         function showSurprise() {
             document.getElementById("countdown-container").style.display = "none";
             document.getElementById("surprise-container").style.display = "block";
-            // Lancer la pluie de cœurs et ballons automatiquement
             setInterval(createFloatingElement, 400);
         }
 
@@ -310,11 +309,9 @@
             const tip = document.getElementById("envelope-tip");
             if(env.classList.contains("open")) {
                 tip.innerText = "Clique à nouveau pour la refermer";
-                // Lancer la musique de fond
-                music.play().catch(error => console.log("Lecture audio bloquée ou en attente d'interaction"));
+                music.play().catch(error => console.log("Audio en attente"));
             } else {
                 tip.innerText = "Clique sur l'enveloppe pour l'ouvrir";
-                // Mettre la musique en pause si elle referme la lettre
                 music.pause();
             }
         }
@@ -338,7 +335,7 @@
         }
 
         // --- LIGNE DE TEST ---
-        // Décommente la ligne ci-dessous (enlève les //) si tu veux tester le rendu final avec la musique !
+        // Décommente la ligne ci-dessous (enlève les //) pour tester tout de suite !
         // showSurprise();
     </script>
 </body>
