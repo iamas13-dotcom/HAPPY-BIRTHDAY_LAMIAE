@@ -107,7 +107,7 @@
             margin: 20px auto;
             cursor: pointer;
             perspective: 1000px;
-            width: 200px;
+            width: 220px;
             height: 150px;
         }
         .envelope {
@@ -128,9 +128,9 @@
             top: 0;
             width: 0;
             height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-top: 80px solid #ff5e7e;
+            border-left: 110px solid transparent;
+            border-right: 110px solid transparent;
+            border-top: 85px solid #ff5e7e;
             transform-origin: top;
             transition: transform 0.4s 0.2s;
             z-index: 3;
@@ -142,12 +142,12 @@
         .letter {
             position: absolute;
             bottom: 5px;
-            width: 90%;
+            width: 92%;
             height: 85%;
             background: white;
             color: #333;
-            border-radius: 6px;
-            padding: 15px 10px;
+            border-radius: 8px;
+            padding: 15px;
             transition: transform 0.5s 0.4s, opacity 0.5s;
             z-index: 2;
             font-size: 0.85rem;
@@ -155,20 +155,21 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            text-align: left;
             transform: translateY(0);
         }
         .envelope.open .letter {
-            transform: translateY(-80px) scale(1.1);
+            transform: translateY(-110px) scale(1.15);
             z-index: 5;
             height: auto;
-            min-height: 180px;
+            min-height: 240px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .letter-click-tip {
             font-size: 0.8rem;
             color: #aaa;
-            margin-top: 5px;
+            margin-top: 15px;
         }
 
         /* Éléments flottants (Cœurs / Ballons) */
@@ -241,7 +242,7 @@
         <!-- Après minuit ou fin du décompte : La Surprise -->
         <div id="surprise-container" class="surprise-section">
             <h2 class="hbd-title">LAMIAE 💖</h2>
-            <p style="color: #ffb3c1; margin-bottom: 20px; font-weight: bold; font-size: 1.1rem;">✨ Joyeux Anniversaire ! ✨</p>
+            <p style="color: #ffb3c1; margin-bottom: 25px; font-weight: bold; font-size: 1.1rem;">✨ Joyeux Anniversaire ! ✨</p>
             
             <p style="font-size: 0.9rem; margin-bottom: 15px;">Une petite surprise t'attend juste ici...</p>
             
@@ -250,8 +251,10 @@
                     <span style="font-size: 2rem; z-index: 4;">💌</span>
                     <div class="letter">
                         <p style="font-weight: bold; margin-bottom: 8px; color: #ff5e7e;">Ma chère Lamiae, ❤️</p>
-                        <p style="line-height: 1.4; font-size: 0.85rem;">[Écris ton joli message personnalisé ici ! Tu peux modifier cette phrase directement dans le fichier pour lui dire tout ce que tu as sur le cœur.]</p>
-                        <p style="margin-top: 10px; font-size: 0.8rem; text-align: right; font-style: italic;">Avec tout mon amour...</p>
+                        <p style="line-height: 1.4; font-size: 0.78rem; color: #444; margin-bottom: 8px;">En ce jour si spécial, je voulais prendre un moment pour te dire à quel point tu comptes pour moi. Le temps passe, mais chaque instant partagé à tes côtés ne fait que rendre les jours plus beaux.</p>
+                        <p style="line-height: 1.4; font-size: 0.78rem; color: #444; margin-bottom: 8px;">Tu es cette étoile qui brille un peu plus fort que toutes les autres dans mon ciel, celle qui apporte de la lumière, de la joie et de la douceur dans ma vie.</p>
+                        <p style="line-height: 1.4; font-size: 0.78rem; color: #444;">Je te souhaite le plus merveilleux des anniversaires. Que cette nouvelle année t'apporte autant de bonheur, de rires et de réussite que tu en mérites — c'est-à-dire énormément. Merci d'être la personne extraordinaire que tu es.</p>
+                        <p style="margin-top: 10px; font-size: 0.75rem; text-align: right; font-style: italic; color: #ff5e7e; font-weight: bold;">À tes côtés, toujours. ✨</p>
                     </div>
                 </div>
             </div>
@@ -314,19 +317,17 @@
             item.innerText = randomIcon;
             
             item.style.left = Math.random() * 100 + 'vw';
-            // Vitesse un peu aléatoire
             item.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
             
             document.body.appendChild(item);
             
-            // Supprime l'élément après l'animation pour ne pas surcharger le téléphone
             setTimeout(() => {
                 item.remove();
             }, 7000);
         }
 
-        // --- LIGNE DE TEST À SUPPRIMER OU PASSER EN COMMENTAIRE POUR LA PRODUCTION ---
-        // Décommente la ligne ci-dessous si tu veux tester tout de suite le rendu de la surprise sans attendre le 21 juillet !
+        // --- LIGNE DE TEST ---
+        // Décommente la ligne ci-dessous (enlève les //) si tu veux tester tout de suite le rendu final !
         // showSurprise();
     </script>
 </body>
