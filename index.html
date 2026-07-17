@@ -212,6 +212,11 @@
 
     <div class="stars"></div>
 
+    <!-- Lecteur audio masqué -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="container">
         <!-- Avant minuit : Compte à rebours -->
         <div id="countdown-container">
@@ -298,13 +303,19 @@
 
         function openEnvelope() {
             const env = document.getElementById("envelope");
+            const music = document.getElementById("bg-music");
+            
             env.classList.toggle("open");
             
             const tip = document.getElementById("envelope-tip");
             if(env.classList.contains("open")) {
                 tip.innerText = "Clique à nouveau pour la refermer";
+                // Lancer la musique de fond
+                music.play().catch(error => console.log("Lecture audio bloquée ou en attente d'interaction"));
             } else {
                 tip.innerText = "Clique sur l'enveloppe pour l'ouvrir";
+                // Mettre la musique en pause si elle referme la lettre
+                music.pause();
             }
         }
 
@@ -327,7 +338,7 @@
         }
 
         // --- LIGNE DE TEST ---
-        // Décommente la ligne ci-dessous (enlève les //) si tu veux tester tout de suite le rendu final !
+        // Décommente la ligne ci-dessous (enlève les //) si tu veux tester le rendu final avec la musique !
         // showSurprise();
     </script>
 </body>
